@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- Fondo azul oscuro con bordes redondeados -->
+  <rect width="96" height="96" rx="14" fill="#0f1d3a"/>
+  <!-- Texto OMA (adaptado del logo del nav, centrado verticalmente en 96×96) -->
+  <text x="4" y="54" font-family="'Syne','Arial Black',Arial,sans-serif" font-weight="800" font-size="28" fill="#ffffff" letter-spacing="-1">OMA</text>
+  <!-- Tres barras azules escalonadas (más corta a más larga, de arriba a abajo) -->
+  <rect x="72" y="28" width="18" height="5" rx="2.5" fill="#4a6fa5"/>
+  <rect x="72" y="37" width="22" height="5" rx="2.5" fill="#5a80bc"/>
+  <rect x="72" y="46" width="26" height="5" rx="2.5" fill="#6a90cf"/>
+  <!-- Texto tech. debajo -->
+  <text x="4" y="72" font-family="'Syne','Arial Black',Arial,sans-serif" font-weight="400" font-size="19" fill="#ffffff" letter-spacing="-0.5">tech.</text>
+</svg>
