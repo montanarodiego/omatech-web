@@ -252,3 +252,28 @@ setTimeout(() => {
     dots.forEach((dot, i) => dot.classList.toggle('active', i === idx));
   }, { passive: true });
 })();
+
+
+// ── LAZY VISIBILITY ──
+(function initLazyVisible() {
+  const parents = document.querySelectorAll('.why-grid, .proof-section, .contact-section');
+  const children = [];
+
+  parents.forEach(parent => {
+    Array.from(parent.children).forEach(child => {
+      child.style.visibility = 'hidden';
+      children.push(child);
+    });
+  });
+
+  const lazyObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.visibility = 'visible';
+        lazyObs.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '200px' });
+
+  children.forEach(child => lazyObs.observe(child));
+})();
