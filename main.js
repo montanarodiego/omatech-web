@@ -81,10 +81,15 @@ const PRODUCTS = {
 const CHIP_IDS = ['cl1', 'cl2', 'cl3', 'cr1', 'cr2', 'cr3'];
 
 let currentProduct = 'tc56';
+let activePanel    = null;
 
-function switchProduct(id) {
+function switchProduct(id, panelEl) {
   if (id === currentProduct) return;
   currentProduct = id;
+
+  if (activePanel) activePanel.classList.remove('active');
+  activePanel = panelEl || null;
+  if (activePanel) activePanel.classList.add('active');
 
   const product = PRODUCTS[id];
   const chips   = CHIP_IDS.map(cid => document.getElementById(cid));
@@ -126,15 +131,21 @@ function switchProduct(id) {
 const panelObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting && entry.intersectionRatio >= 0.45) {
-      switchProduct(entry.target.dataset.product);
+      switchProduct(entry.target.dataset.product, entry.target);
     }
   });
 }, { threshold: 0.45 });
 
 document.querySelectorAll('.text-panel').forEach(panel => panelObserver.observe(panel));
 
-// Show initial chips on load
+// Init first panel active + show initial chips
 setTimeout(() => {
+  const firstPanel = document.querySelector('.text-panel[data-product="tc56"]');
+  if (firstPanel) {
+    activePanel = firstPanel;
+    firstPanel.classList.add('active');
+  }
+
   CHIP_IDS.forEach((id, i) => {
     setTimeout(() => {
       const el = document.getElementById(id);
