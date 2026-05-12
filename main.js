@@ -10,6 +10,21 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 
+// ── HAMBURGER MENU ──
+const hamburger = document.getElementById('navHamburger');
+const navLinks  = document.getElementById('navLinks');
+
+hamburger.addEventListener('click', () => {
+  const isOpen = navLinks.classList.toggle('open');
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+
+function closeNav() {
+  navLinks.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+
 // ── REVEAL ON SCROLL ──
 const revealObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
