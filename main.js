@@ -97,27 +97,22 @@ function switchProduct(id, panelEl) {
   const dname   = document.getElementById('dname');
   const dsvg    = document.getElementById('dsvg');
 
-  // Fade out chips
   chips.forEach(chip => {
     chip.style.opacity   = '0';
     chip.style.transform = 'translateY(6px)';
   });
 
-  // Scale down frame
   dframe.style.transform = 'scale(0.94)';
   dframe.style.opacity   = '0.4';
 
   setTimeout(() => {
-    // Update content
     dname.textContent = product.name;
     dsvg.style.stroke = product.stroke;
     chips.forEach((chip, i) => { chip.innerHTML = product.chips[i]; });
 
-    // Scale frame back
     dframe.style.transform = 'scale(1)';
     dframe.style.opacity   = '1';
 
-    // Stagger chips back in
     chips.forEach((chip, i) => {
       setTimeout(() => {
         chip.style.opacity   = '1';
@@ -154,3 +149,106 @@ setTimeout(() => {
     }, 700 + i * 90);
   });
 }, 0);
+
+
+// ── MAGNETIC BUTTONS ──
+(function initMagneticButtons() {
+  const magnetics = Array.from(document.querySelectorAll('.btn-gold, .nav-cta, .panel-cta'));
+  const mouse = { x: 0, y: 0 };
+  let rafId = null;
+
+  document.addEventListener('mousemove', e => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+
+    if (rafId) return;
+    rafId = requestAnimationFrame(() => {
+      rafId = null;
+      magnetics.forEach(btn => {
+        const rect = btn.getBoundingClientRect();
+        const cx   = rect.left + rect.width / 2;
+        const cy   = rect.top  + rect.height / 2;
+        const dx   = mouse.x - cx;
+        const dy   = mouse.y - cy;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < 80) {
+          btn.style.transition = 'filter 0.15s';
+          btn.style.transform  = `translate(${dx * 0.3}px, ${dy * 0.3}px)`;
+        } else {
+          btn.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.15s';
+          btn.style.transform  = 'translate(0px, 0px)';
+        }
+      });
+    });
+  });
+})();
+
+
+// ── NUMBER COUNTER ──
+(function initCounters() {
+  function easeOutExpo(t) {
+    return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+  }
+
+  function formatNum(n) {
+    return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  }
+
+  function animateCounter(el) {
+    const raw    = el.textContent.replace(/\./g, '');
+    const target = parseInt(raw, 10);
+    if (isNaN(target)) return;
+
+    const startTime = performance.now();
+    const duration  = 1200;
+
+    (function tick(now) {
+      const t = Math.min((now - startTime) / duration, 1);
+      el.textContent = formatNum(target * easeOutExpo(t));
+      if (t < 1) requestAnimationFrame(tick);
+    })(performance.now());
+  }
+
+  const counterObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        counterObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.price-num').forEach(el => counterObs.observe(el));
+})();
+
+
+// ── MOBILE CAROUSEL ──
+(function initCarousel() {
+  if (window.innerWidth > 767) return;
+
+  const stickyText = document.querySelector('.sticky-text');
+  const panels     = Array.from(document.querySelectorAll('.text-panel'));
+  if (!stickyText || !panels.length) return;
+
+  const dotsWrap = document.createElement('div');
+  dotsWrap.className = 'carousel-dots';
+
+  panels.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => {
+      stickyText.scrollTo({ left: i * window.innerWidth * 0.85, behavior: 'smooth' });
+    });
+    dotsWrap.appendChild(dot);
+  });
+
+  stickyText.insertAdjacentElement('afterend', dotsWrap);
+
+  const dots = Array.from(dotsWrap.querySelectorAll('.carousel-dot'));
+
+  stickyText.addEventListener('scroll', () => {
+    const idx = Math.round(stickyText.scrollLeft / (window.innerWidth * 0.85));
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === idx));
+  }, { passive: true });
+})();
