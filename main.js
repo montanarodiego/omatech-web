@@ -95,7 +95,7 @@ function switchProduct(id, panelEl) {
   const chips   = CHIP_IDS.map(cid => document.getElementById(cid));
   const dframe  = document.getElementById('dframe');
   const dname   = document.getElementById('dname');
-  const dsvg    = document.getElementById('dsvg');
+  const dpic    = document.getElementById('dpic');
 
   chips.forEach(chip => {
     chip.style.opacity   = '0';
@@ -107,7 +107,8 @@ function switchProduct(id, panelEl) {
 
   setTimeout(() => {
     dname.textContent = product.name;
-    dsvg.style.stroke = product.stroke;
+    dpic.src = `img/${id}.png`;
+    dpic.alt = product.name;
     chips.forEach((chip, i) => { chip.innerHTML = product.chips[i]; });
 
     dframe.style.transform = 'scale(1)';
