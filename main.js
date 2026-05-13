@@ -109,6 +109,7 @@ function switchProduct(id, panelEl) {
     dname.textContent = product.name;
     dpic.src = `img/${id}.png`;
     dpic.alt = product.name;
+    dpic.style.transform = id === 'tc21' ? 'scale(1.4)' : 'scale(1)';
     chips.forEach((chip, i) => { chip.innerHTML = product.chips[i]; });
 
     dframe.style.transform = 'scale(1)';
