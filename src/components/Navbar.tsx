@@ -11,7 +11,7 @@ const productLinks = [
 
 function SignalBars() {
   return (
-    <svg width="24" height="17" viewBox="0 0 26 18" fill="none" aria-hidden="true">
+    <svg width="34" height="24" viewBox="0 0 26 18" fill="none" aria-hidden="true">
       <rect x="0" y="0"  width="11" height="3" rx="0.5" fill="#2563EB" />
       <rect x="0" y="5"  width="16" height="3" rx="0.5" fill="#2563EB" />
       <rect x="0" y="10" width="21" height="3" rx="0.5" fill="#2563EB" />
@@ -23,10 +23,10 @@ function SignalBars() {
 function Logo() {
   return (
     <div className="leading-none select-none">
-      <div className="flex items-center gap-2.5">
+      <div className="flex items-center gap-3">
         <span
           className="font-display font-bold text-bone"
-          style={{ fontSize: '21px', letterSpacing: '-0.04em' }}
+          style={{ fontSize: '30px', letterSpacing: '-0.04em' }}
         >
           OMA
         </span>
@@ -34,7 +34,7 @@ function Logo() {
       </div>
       <span
         className="font-mono font-medium text-amber block mt-1"
-        style={{ fontSize: '9px', letterSpacing: '0.32em' }}
+        style={{ fontSize: '12px', letterSpacing: '0.32em' }}
       >
         TECH.
       </span>
@@ -43,7 +43,7 @@ function Logo() {
 }
 
 const linkClasses = [
-  'group relative flex items-baseline gap-1.5 font-mono text-[13px] text-ink-300',
+  'group relative flex items-baseline gap-1.5 font-mono text-[17px] tracking-[-0.01em] text-ink-300',
   'hover:text-bone transition-colors duration-200 cursor-pointer bg-transparent border-none p-0',
 ].join(' ')
 
@@ -53,10 +53,10 @@ function CtaButton({ className = '' }: { className?: string }) {
       href={WA_LINK}
       target="_blank"
       rel="noopener noreferrer"
-      className={`group inline-flex items-center gap-3 bg-amber text-ink pl-4 pr-2 py-2 font-mono text-[12px] font-semibold uppercase tracking-wide transition-colors duration-200 hover:bg-bone active:scale-[0.98] ${className}`}
+      className={`group inline-flex items-center gap-3 bg-amber text-ink pl-6 pr-3 py-3.5 font-mono text-[15px] font-semibold uppercase tracking-wide transition-colors duration-200 hover:bg-bone active:scale-[0.98] ${className}`}
     >
       Hablar con ventas
-      <span className="grid place-items-center w-6 h-6 bg-ink/15 text-ink transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+      <span className="grid place-items-center w-8 h-8 bg-ink/15 text-ink transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
         ↗
       </span>
     </a>
@@ -98,7 +98,7 @@ export default function Navbar() {
           : 'bg-transparent border-transparent',
       ].join(' ')}
     >
-      <div className="max-w-content mx-auto px-6 h-[72px] flex items-center justify-between">
+      <div className="max-w-content mx-auto px-6 h-[100px] flex items-center justify-between">
         <Link
           to="/"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -107,12 +107,12 @@ export default function Navbar() {
           <Logo />
         </Link>
 
-        <div className="hidden md:flex items-center gap-9">
+        <div className="hidden md:flex items-center gap-8 lg:gap-9">
           {productLinks.map((l) => {
             const active = location.pathname === l.to
             return (
               <Link key={l.to} to={l.to} className={linkClasses} aria-current={active ? 'page' : undefined}>
-                <span className="text-ink-500 text-[10px]">{l.index}</span>
+                <span className="text-ink-500 text-[12px]">{l.index}</span>
                 <span className={active ? 'text-bone' : ''}>{l.label}</span>
                 <span
                   className={[
@@ -124,7 +124,7 @@ export default function Navbar() {
             )
           })}
           <button onClick={goContacto} className={linkClasses}>
-            <span className="text-ink-500 text-[10px]">03</span>
+            <span className="text-ink-500 text-[12px]">03</span>
             <span>Contacto</span>
             <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-amber transition-all duration-300 group-hover:w-full" />
           </button>
@@ -132,7 +132,7 @@ export default function Navbar() {
 
         <div className="flex items-center gap-3">
           {/* Indicador "en línea" — panel de instrumentos */}
-          <span className="hidden lg:flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-ink-500 mr-2">
+          <span className="hidden lg:flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.2em] text-ink-500 mr-2">
             <span className="relative flex w-1.5 h-1.5">
               <span className="absolute inline-flex w-full h-full rounded-full bg-amber opacity-60 motion-safe:animate-ping" />
               <span className="relative inline-flex w-1.5 h-1.5 rounded-full bg-amber" />

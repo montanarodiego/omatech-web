@@ -6,9 +6,9 @@ html {
   scroll-behavior: smooth;
 }
 
-/* La navbar fija (72px) tapaba el inicio de las secciones al saltar a un ancla */
+/* La navbar fija (100px) tapaba el inicio de las secciones al saltar a un ancla */
 section[id] {
-  scroll-margin-top: 88px;
+  scroll-margin-top: 120px;
 }
 
 html,

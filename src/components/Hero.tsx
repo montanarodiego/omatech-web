@@ -86,16 +86,16 @@ export default function Hero() {
             <motion.div variants={rise} className="flex flex-col sm:flex-row items-start gap-4 pt-1">
               <button
                 onClick={() => scrollTo('#hardware')}
-                className="group inline-flex items-center gap-3 bg-amber text-ink pl-5 pr-2 py-3 font-mono text-[13px] font-semibold uppercase tracking-wide transition-colors duration-200 hover:bg-bone active:scale-[0.98] cursor-pointer border-none"
+                className="group inline-flex items-center gap-3 bg-amber text-ink pl-6 pr-2.5 py-3.5 font-mono text-[15px] font-semibold uppercase tracking-wide transition-colors duration-200 hover:bg-bone active:scale-[0.98] cursor-pointer border-none"
               >
                 Ver equipos
-                <span className="grid place-items-center w-7 h-7 bg-ink/15 transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                <span className="grid place-items-center w-8 h-8 bg-ink/15 transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
                   ↗
                 </span>
               </button>
               <button
                 onClick={() => scrollTo('#software')}
-                className="group inline-flex items-center gap-2 text-bone font-mono text-[13px] uppercase tracking-wide py-3 cursor-pointer bg-transparent border-none"
+                className="group inline-flex items-center gap-2 text-bone font-mono text-[14px] uppercase tracking-wide py-3 cursor-pointer bg-transparent border-none"
               >
                 <span className="border-b border-ink-700 group-hover:border-amber transition-colors duration-200 pb-0.5">
                   Conocer el software
@@ -107,7 +107,7 @@ export default function Hero() {
             {/* Tira de specs / badges */}
             <motion.div variants={rise} className="flex flex-wrap items-center gap-x-3 gap-y-2 pt-3">
               {badges.map((b, i) => (
-                <span key={b} className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-wider text-ink-500">
+                <span key={b} className="flex items-center gap-3 font-mono text-[12px] uppercase tracking-wider text-ink-500">
                   {i > 0 && <span className="text-ink-line" aria-hidden="true">/</span>}
                   {b}
                 </span>
@@ -146,13 +146,13 @@ export default function Hero() {
                 <div className="flex items-end justify-between px-5 py-4 border-t border-ink-line bg-white/[0.015]">
                   <div className="flex flex-col">
                     <span className="font-mono text-[10px] uppercase tracking-wider text-ink-500">Desde</span>
-                    <span className="font-display font-bold text-bone tabular" style={{ fontSize: '24px', letterSpacing: '-0.02em' }}>
+                    <span className="font-display font-bold text-bone tabular" style={{ fontSize: '30px', letterSpacing: '-0.02em' }}>
                       $ 915.000
                     </span>
                   </div>
                   <button
                     onClick={() => scrollTo('#hardware')}
-                    className="font-mono text-[11px] uppercase tracking-wider text-amber hover:text-bone transition-colors cursor-pointer bg-transparent border-none"
+                    className="font-mono text-[12px] uppercase tracking-wider text-amber underline underline-offset-4 decoration-amber/40 hover:text-bone hover:decoration-bone transition-colors cursor-pointer bg-transparent border-none"
                   >
                     Ver detalle →
                   </button>
