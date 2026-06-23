@@ -21,10 +21,10 @@ function LogoSmall() {
           OMA
         </span>
         <svg width="16" height="11" viewBox="0 0 16 11" fill="none" aria-hidden="true">
-          <rect x="0" y="0"  width="6.5"  height="2" rx="1" fill="#FF5E1A" />
-          <rect x="0" y="3"  width="9.5"  height="2" rx="1" fill="#FF5E1A" />
-          <rect x="0" y="6"  width="12.5" height="2" rx="1" fill="#FF5E1A" />
-          <rect x="0" y="9"  width="16"   height="2" rx="1" fill="#FF5E1A" />
+          <rect x="0" y="0"  width="6.5"  height="2" rx="1" fill="#2563EB" />
+          <rect x="0" y="3"  width="9.5"  height="2" rx="1" fill="#2563EB" />
+          <rect x="0" y="6"  width="12.5" height="2" rx="1" fill="#2563EB" />
+          <rect x="0" y="9"  width="16"   height="2" rx="1" fill="#2563EB" />
         </svg>
       </div>
       <span

@@ -12,10 +12,10 @@ const productLinks = [
 function SignalBars() {
   return (
     <svg width="26" height="18" viewBox="0 0 26 18" fill="none" aria-hidden="true">
-      <rect x="0" y="0"  width="11" height="3" rx="1.5" fill="#FF5E1A" />
-      <rect x="0" y="5"  width="16" height="3" rx="1.5" fill="#FF5E1A" />
-      <rect x="0" y="10" width="21" height="3" rx="1.5" fill="#FF5E1A" />
-      <rect x="0" y="15" width="26" height="3" rx="1.5" fill="#FF5E1A" />
+      <rect x="0" y="0"  width="11" height="3" rx="1.5" fill="#2563EB" />
+      <rect x="0" y="5"  width="16" height="3" rx="1.5" fill="#2563EB" />
+      <rect x="0" y="10" width="21" height="3" rx="1.5" fill="#2563EB" />
+      <rect x="0" y="15" width="26" height="3" rx="1.5" fill="#2563EB" />
     </svg>
   )
 }

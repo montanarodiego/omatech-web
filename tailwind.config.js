@@ -6,8 +6,8 @@ export default {
       colors: {
         ink:          '#0B0B0C',
         bone:         '#F5F3EF',
-        amber:        '#FF5E1A',
-        'amber-dim':  '#CC4A14',
+        amber:        '#2563EB',
+        'amber-dim':  '#1D4ED8',
         'ink-700':    '#3A3A3D',
         'ink-500':    '#6B6B70',
         'ink-300':    '#A8A8AE',
