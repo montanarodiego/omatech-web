@@ -36,8 +36,17 @@ export default function BrowserMockup({
         </div>
       </div>
 
-      {/* Screenshot */}
-      <img src={src} alt={alt} loading="lazy" decoding="async" className="block w-full h-auto" />
+      {/* Screenshot — width/height intrínsecos (ratio de las capturas) para que
+          el navegador reserve el alto y no haya layout shift al cargar. */}
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        decoding="async"
+        width={1919}
+        height={1151}
+        className="block w-full h-auto"
+      />
     </div>
   )
 }

@@ -1,11 +1,15 @@
+import { Suspense, lazy } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { MotionConfig } from 'framer-motion'
 import Navbar from './components/Navbar'
 import ScrollManager from './components/ScrollManager'
 import Home from './pages/Home'
-import POS from './pages/POS'
-import VanderBus from './pages/VanderBus'
-import NotFound from './pages/NotFound'
+
+// Rutas secundarias en chunks aparte: el visitante del home no descarga el
+// código de /pos y /vanderbus hasta que navega a ellas.
+const POS = lazy(() => import('./pages/POS'))
+const VanderBus = lazy(() => import('./pages/VanderBus'))
+const NotFound = lazy(() => import('./pages/NotFound'))
 
 export default function App() {
   return (
@@ -24,12 +28,14 @@ export default function App() {
       <ScrollManager />
       <Navbar />
       <main id="main-content">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/pos" element={<POS />} />
-          <Route path="/vanderbus" element={<VanderBus />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Suspense fallback={<div className="min-h-screen bg-ink" aria-hidden="true" />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/pos" element={<POS />} />
+            <Route path="/vanderbus" element={<VanderBus />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </main>
       </MotionConfig>
     </BrowserRouter>

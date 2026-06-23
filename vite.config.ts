@@ -12,4 +12,18 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base: '/',
+  build: {
+    rollupOptions: {
+      output: {
+        // Dependencias estables en chunks propios: cambian poco entre deploys,
+        // así el navegador los cachea y solo vuelve a bajar el código de la app.
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('framer-motion')) return 'motion'
+            return 'vendor'
+          }
+        },
+      },
+    },
+  },
 })

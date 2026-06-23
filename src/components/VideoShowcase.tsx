@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import type { Variants } from 'framer-motion'
 
@@ -18,6 +19,33 @@ const POSTER = '/screenshots/caja-pos-dark.png'
  */
 export default function VideoShowcase() {
   const reducedMotion = useReducedMotion()
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  /**
+   * Carga diferida: el video pesa ~6 MB y vive muy por debajo del fold, así que
+   * no lo descargamos hasta que entra en viewport. Reproduce al entrar, pausa al
+   * salir. Si el usuario prefiere menos movimiento, no autoreproduce (queda el
+   * póster). Implementado con IntersectionObserver para no descargar de entrada.
+   */
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          if (!video.src) video.src = VIDEO_SRC
+          if (!reducedMotion) video.play().catch(() => {})
+        } else {
+          video.pause()
+        }
+      },
+      { rootMargin: '200px', threshold: 0.25 },
+    )
+
+    observer.observe(video)
+    return () => observer.disconnect()
+  }, [reducedMotion])
 
   return (
     <section className="relative bg-ink py-24 md:py-32 px-6 overflow-hidden">
@@ -75,16 +103,18 @@ export default function VideoShowcase() {
               </div>
             </div>
 
-            {/* Video — autoplay, loop, muted, sin controles */}
+            {/* Video — loop, muted, sin controles. La fuente y el play se
+                inyectan vía IntersectionObserver (ver useEffect arriba) para
+                no descargar 6 MB hasta que entra en pantalla. aspect-video
+                reserva el espacio y evita layout shift al cargar. */}
             <video
-              className="block w-full h-auto"
-              src={VIDEO_SRC}
+              ref={videoRef}
+              className="block w-full aspect-video object-cover bg-ink"
               poster={POSTER}
-              autoPlay
               loop
               muted
               playsInline
-              preload="metadata"
+              preload="none"
               aria-label="Demostración de OmaTech POS funcionando"
             />
           </div>
