@@ -5,6 +5,7 @@ import ProductHero from '../components/ProductHero'
 import FeatureGrid from '../components/FeatureGrid'
 import type { Feature } from '../components/FeatureGrid'
 import ModuleList from '../components/ModuleList'
+import HowItWorks from '../components/HowItWorks'
 import SectionFade from '../components/SectionFade'
 import BrowserMockup from '../components/BrowserMockup'
 import Footer from '../components/Footer'
@@ -317,6 +318,7 @@ export default function POS() {
         features={features}
         theme="light"
       />
+      <HowItWorks />
       <ShowcaseTabs />
       <SectionFade from={BONE} to={INK} />
 
