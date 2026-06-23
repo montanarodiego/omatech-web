@@ -100,7 +100,7 @@ function ProductCard({ product }: { product: Product }) {
       onHoverStart={handleHoverStart}
       whileHover={{ y: -4 }}
       transition={{ duration: 0.25 }}
-      className="group relative overflow-hidden flex flex-col bg-white border border-bone-line hover:border-amber rounded-2xl p-8 gap-6 transition-colors duration-300 hover:shadow-[0_12px_48px_rgba(255,94,26,0.1)]"
+      className="group relative overflow-hidden flex flex-col bg-white border border-bone-line hover:border-amber rounded-2xl p-6 sm:p-8 gap-6 transition-colors duration-300 hover:shadow-[0_12px_48px_rgba(37,99,235,0.1)]"
     >
       {/* Card scan line */}
       <motion.div
@@ -108,7 +108,7 @@ function ProductCard({ product }: { product: Product }) {
         initial={{ x: '-100%', opacity: 0 }}
         className="absolute top-0 bottom-0 w-8 pointer-events-none z-20"
         style={{
-          background: 'linear-gradient(90deg, transparent, rgba(255,94,26,0.25), transparent)',
+          background: 'linear-gradient(90deg, transparent, rgba(37,99,235,0.25), transparent)',
         }}
       />
 

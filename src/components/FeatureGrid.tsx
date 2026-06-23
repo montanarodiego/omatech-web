@@ -83,8 +83,8 @@ export default function FeatureGrid({
               className={[
                 'flex flex-col gap-4 rounded-2xl p-7 transition-[border-color,box-shadow] duration-300',
                 dark
-                  ? 'bg-white/5 backdrop-blur-sm border border-white/10 hover:border-amber/30 hover:shadow-[0_0_40px_-8px_rgba(255,94,26,0.18)]'
-                  : 'bg-white border border-bone-line hover:border-amber/40 hover:shadow-[0_12px_48px_-12px_rgba(255,94,26,0.15)]',
+                  ? 'bg-white/5 backdrop-blur-sm border border-white/10 hover:border-amber/30 hover:shadow-[0_0_40px_-8px_rgba(37,99,235,0.18)]'
+                  : 'bg-white border border-bone-line hover:border-amber/40 hover:shadow-[0_12px_48px_-12px_rgba(37,99,235,0.15)]',
               ].join(' ')}
             >
               <div className="text-amber/70">{f.icon}</div>

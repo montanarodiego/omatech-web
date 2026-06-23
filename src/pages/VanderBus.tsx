@@ -149,7 +149,7 @@ function EarlyAccessForm() {
         aria-hidden="true"
         style={{
           background:
-            'radial-gradient(70% 80% at 50% 0%, rgba(255, 94, 26, 0.12) 0%, rgba(255, 94, 26, 0.04) 40%, transparent 75%)',
+            'radial-gradient(70% 80% at 50% 0%, rgba(37, 99, 235, 0.12) 0%, rgba(37, 99, 235, 0.04) 40%, transparent 75%)',
         }}
       />
       <motion.div
@@ -219,8 +219,8 @@ export default function VanderBus() {
         eyebrow="SOFTWARE LOGÍSTICO"
         title={
           <>
-            Trazabilidad total para
-            <br />
+            Trazabilidad total para{' '}
+            <br className="hidden sm:block" />
             operaciones de <span className="text-amber">distribución.</span>
           </>
         }

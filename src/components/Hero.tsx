@@ -30,7 +30,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col justify-center bg-ink overflow-hidden"
+      className="relative min-h-[100svh] flex flex-col justify-center bg-ink overflow-hidden"
     >
       {/* Atmospheric glow — warm amber on the right, fades toward the center */}
       <div
@@ -38,7 +38,7 @@ export default function Hero() {
         aria-hidden="true"
         style={{
           background:
-            'radial-gradient(60% 60% at 100% 50%, rgba(255, 94, 26, 0.10) 0%, rgba(255, 94, 26, 0.04) 35%, transparent 70%)',
+            'radial-gradient(60% 60% at 100% 50%, rgba(37, 99, 235, 0.10) 0%, rgba(37, 99, 235, 0.04) 35%, transparent 70%)',
         }}
       />
 
@@ -63,12 +63,12 @@ export default function Hero() {
           <motion.h1
             variants={fadeUp}
             className="font-display font-black text-bone leading-[0.95] tracking-[-0.03em]"
-            style={{ fontSize: 'clamp(2.75rem, 8vw, 6.5rem)' }}
+            style={{ fontSize: 'clamp(2.25rem, 8vw, 6.5rem)' }}
           >
-            Tecnología que
-            <br />
-            resuelve problemas
-            <br />
+            Tecnología que{' '}
+            <br className="hidden sm:block" />
+            resuelve problemas{' '}
+            <br className="hidden sm:block" />
             <span className="text-amber">reales.</span>
           </motion.h1>
 

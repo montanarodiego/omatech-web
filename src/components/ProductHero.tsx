@@ -59,7 +59,7 @@ export default function ProductHero({
         aria-hidden="true"
         style={{
           background:
-            'radial-gradient(60% 60% at 100% 50%, rgba(255, 94, 26, 0.10) 0%, rgba(255, 94, 26, 0.04) 35%, transparent 70%)',
+            'radial-gradient(60% 60% at 100% 50%, rgba(37, 99, 235, 0.10) 0%, rgba(37, 99, 235, 0.04) 35%, transparent 70%)',
         }}
       />
 

@@ -79,7 +79,7 @@ function SoftwareCardItem({ card }: { card: SoftwareCard }) {
       variants={fadeUp}
       whileHover={{ y: -4 }}
       transition={{ duration: 0.3, ease: EASE }}
-      className="group flex flex-col gap-6 rounded-2xl p-8 bg-white/5 backdrop-blur-sm border border-white/10 transition-[border-color,box-shadow] duration-300 hover:border-amber/30 hover:shadow-[0_0_40px_-8px_rgba(255,94,26,0.18)]"
+      className="group flex flex-col gap-6 rounded-2xl p-6 sm:p-8 bg-white/5 backdrop-blur-sm border border-white/10 transition-[border-color,box-shadow] duration-300 hover:border-amber/30 hover:shadow-[0_0_40px_-8px_rgba(37,99,235,0.18)]"
     >
       {/* Badge */}
       <span className={`self-start font-mono text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-md ${card.badgeStyle}`}>

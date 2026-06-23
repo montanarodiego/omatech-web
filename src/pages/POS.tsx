@@ -142,7 +142,7 @@ function FinalCta() {
         aria-hidden="true"
         style={{
           background:
-            'radial-gradient(70% 80% at 50% 100%, rgba(255, 94, 26, 0.14) 0%, rgba(255, 94, 26, 0.04) 40%, transparent 75%)',
+            'radial-gradient(70% 80% at 50% 100%, rgba(37, 99, 235, 0.14) 0%, rgba(37, 99, 235, 0.04) 40%, transparent 75%)',
         }}
       />
       <motion.div
@@ -292,8 +292,8 @@ export default function POS() {
         eyebrow="SOFTWARE PROPIO"
         title={
           <>
-            El punto de venta que entiende
-            <br />
+            El punto de venta que entiende{' '}
+            <br className="hidden sm:block" />
             cómo trabaja <span className="text-amber">Argentina.</span>
           </>
         }
