@@ -8,6 +8,7 @@ import ModuleList from '../components/ModuleList'
 import HowItWorks from '../components/HowItWorks'
 import SectionFade from '../components/SectionFade'
 import BrowserMockup from '../components/BrowserMockup'
+import VideoShowcase from '../components/VideoShowcase'
 import Footer from '../components/Footer'
 
 const INK = '#0A0A0B'
@@ -322,6 +323,8 @@ export default function POS() {
       <HowItWorks />
       <ShowcaseTabs />
       <SectionFade from={BONE} to={INK} />
+
+      <VideoShowcase />
 
       <ModuleList eyebrow="Módulos del sistema" title="Todo lo que incluye" modules={modules} />
 
