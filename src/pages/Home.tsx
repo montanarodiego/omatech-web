@@ -6,8 +6,8 @@ import Footer from '../components/Footer'
 import SectionFade from '../components/SectionFade'
 
 // Section background tokens (mirror tailwind.config.js: ink / bone)
-const INK = '#0B0B0C'
-const BONE = '#F5F3EF'
+const INK = '#0A0A0B'
+const BONE = '#F4F2ED'
 
 export default function Home() {
   return (

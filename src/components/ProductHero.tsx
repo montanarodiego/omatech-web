@@ -1,16 +1,16 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import type { Variants } from 'framer-motion'
 
-const EASE: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
+const EASE: [number, number, number, number] = [0.32, 0.72, 0, 1]
 
 const stagger: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.12 } },
+  visible: { transition: { staggerChildren: 0.09, delayChildren: 0.08 } },
 }
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
+const rise: Variants = {
+  hidden: { opacity: 0, y: 22 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE } },
 }
 
 interface Cta {
@@ -53,128 +53,104 @@ export default function ProductHero({
 
   return (
     <section className="relative bg-ink overflow-hidden pt-36 pb-24 md:pt-44 md:pb-32 px-6">
-      {/* Atmospheric glow — warm amber on the right, fades toward the center */}
-      <div
-        className="absolute inset-y-0 right-0 w-2/3 pointer-events-none"
-        aria-hidden="true"
-        style={{
-          background:
-            'radial-gradient(60% 60% at 100% 50%, rgba(37, 99, 235, 0.10) 0%, rgba(37, 99, 235, 0.04) 35%, transparent 70%)',
-        }}
-      />
+      <div className="absolute inset-0 tech-grid grid-fade pointer-events-none" aria-hidden="true" />
 
       <div className="relative z-10 max-w-content mx-auto">
         <motion.div
           variants={stagger}
           initial="hidden"
           animate="visible"
-          className="flex flex-col gap-7 max-w-3xl"
+          className="flex flex-col gap-7 max-w-4xl"
         >
-          <motion.p
-            variants={fadeUp}
-            className="font-mono text-amber uppercase tracking-[0.2em]"
-            style={{ fontSize: '13px' }}
-          >
-            {eyebrow}
-          </motion.p>
+          {/* Etiqueta de índice */}
+          <motion.div variants={rise} className="flex items-center gap-4">
+            <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-amber">
+              {eyebrow}
+            </span>
+            <span className="h-px flex-1 max-w-[120px] bg-ink-line" />
+          </motion.div>
 
           <motion.h1
-            variants={fadeUp}
-            className="font-display font-black text-bone leading-[0.98] tracking-[-0.03em]"
+            variants={rise}
+            className="font-display font-bold text-bone leading-[0.98] tracking-[-0.04em] text-balance"
             style={{ fontSize: 'clamp(2.25rem, 6vw, 4.5rem)' }}
           >
             {title}
           </motion.h1>
 
           <motion.p
-            variants={fadeUp}
-            className="font-body text-ink-300 text-lg leading-relaxed max-w-[560px]"
+            variants={rise}
+            className="font-body text-ink-300 text-lg leading-relaxed max-w-[56ch]"
           >
             {subtitle}
           </motion.p>
 
           {note && (
             <motion.p
-              variants={fadeUp}
-              className="self-start font-mono text-[11px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-md bg-transparent border border-amber/30 text-amber/70"
+              variants={rise}
+              className="self-start font-mono text-[11px] uppercase tracking-wider px-3 py-1.5 border border-amber/30 text-amber/80"
             >
               {note}
             </motion.p>
           )}
 
-          {/* Badges */}
-          <motion.div variants={fadeUp} className="flex flex-wrap gap-x-4 gap-y-2 items-center">
+          {/* Tira de specs */}
+          <motion.div variants={rise} className="flex flex-wrap items-center gap-x-3 gap-y-2">
             {badges.map((b, i) => (
-              <span
-                key={b}
-                className="flex items-center gap-2 font-mono text-ink-300"
-                style={{ fontSize: '12px' }}
-              >
-                {i > 0 && (
-                  <span className="text-amber" aria-hidden="true">
-                    ·
-                  </span>
-                )}
+              <span key={b} className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-wider text-ink-500">
+                {i > 0 && <span className="text-ink-line" aria-hidden="true">/</span>}
                 {b}
               </span>
             ))}
           </motion.div>
 
           {/* CTAs */}
-          <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-start gap-4 pt-2">
+          <motion.div variants={rise} className="flex flex-col sm:flex-row items-start gap-4 pt-2">
             {primaryCta.targetId ? (
               <button
                 onClick={() => scrollToId(primaryCta.targetId as string)}
-                className="group relative overflow-hidden bg-amber text-ink rounded-lg px-6 py-3 font-body font-semibold text-sm cursor-pointer border-none"
+                className="group inline-flex items-center gap-3 bg-amber text-ink pl-5 pr-2 py-3 font-mono text-[13px] font-semibold uppercase tracking-wide transition-colors duration-200 hover:bg-bone active:scale-[0.98] cursor-pointer border-none"
               >
-                <span className="absolute inset-0 bg-amber-dim origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
-                <span className="relative z-10 flex items-center gap-2">
-                  {primaryCta.label}
-                  <span className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-                    →
-                  </span>
-                </span>
+                {primaryCta.label}
+                <span className="grid place-items-center w-7 h-7 bg-ink/15 transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
               </button>
             ) : (
               <a
                 href={primaryCta.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative overflow-hidden bg-amber text-ink rounded-lg px-6 py-3 font-body font-semibold text-sm"
+                className="group inline-flex items-center gap-3 bg-amber text-ink pl-5 pr-2 py-3 font-mono text-[13px] font-semibold uppercase tracking-wide transition-colors duration-200 hover:bg-bone active:scale-[0.98]"
               >
-                <span className="absolute inset-0 bg-amber-dim origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
-                <span className="relative z-10 flex items-center gap-2">
-                  {primaryCta.label}
-                  <span className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-                    →
-                  </span>
-                </span>
+                {primaryCta.label}
+                <span className="grid place-items-center w-7 h-7 bg-ink/15 transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
               </a>
             )}
 
             {secondaryCta && (
               <button
                 onClick={() => scrollToId(secondaryCta.targetId)}
-                className="group flex items-center gap-2 text-bone font-body font-semibold text-sm py-3 cursor-pointer bg-transparent border-none"
+                className="group inline-flex items-center gap-2 text-bone font-mono text-[13px] uppercase tracking-wide py-3 cursor-pointer bg-transparent border-none"
               >
-                {secondaryCta.label}
-                <span className="translate-x-0 group-hover:translate-x-1 transition-transform duration-300">
-                  →
+                <span className="border-b border-ink-700 group-hover:border-amber transition-colors duration-200 pb-0.5">
+                  {secondaryCta.label}
                 </span>
+                <span className="translate-x-0 group-hover:translate-x-1 transition-transform duration-300">→</span>
               </button>
             )}
           </motion.div>
         </motion.div>
 
-        {/* Optional media (e.g. product screenshot mockup) below the hero text */}
+        {/* Media — captura del producto en marco double-bezel */}
         {media && (
           <motion.div
-            initial={reducedMotion ? false : { opacity: 0, y: 20 }}
+            initial={reducedMotion ? false : { opacity: 0, y: 28 }}
             animate={reducedMotion ? undefined : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3, ease: EASE }}
-            className="mt-16 md:mt-20 max-w-[900px] mx-auto"
+            transition={{ duration: 0.9, delay: 0.4, ease: EASE }}
+            className="mt-16 md:mt-20 max-w-[960px] mx-auto"
           >
-            {media}
+            <div className="bg-white/[0.03] ring-1 ring-white/10 rounded-2xl p-1.5">
+              {media}
+            </div>
           </motion.div>
         )}
       </div>

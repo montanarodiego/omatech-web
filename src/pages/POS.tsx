@@ -10,8 +10,8 @@ import SectionFade from '../components/SectionFade'
 import BrowserMockup from '../components/BrowserMockup'
 import Footer from '../components/Footer'
 
-const INK = '#0B0B0C'
-const BONE = '#F5F3EF'
+const INK = '#0A0A0B'
+const BONE = '#F4F2ED'
 
 const SHOT_CAJA_DARK = '/screenshots/caja-pos-dark.png'
 const SHOT_CAJA_LIGHT = '/screenshots/caja-pos-light.png'
@@ -136,46 +136,41 @@ const modules = [
 function FinalCta() {
   const reducedMotion = useReducedMotion()
   return (
-    <section id="precios" className="relative bg-ink overflow-hidden py-28 md:py-32 px-6">
-      <div
-        className="absolute inset-0 pointer-events-none"
-        aria-hidden="true"
-        style={{
-          background:
-            'radial-gradient(70% 80% at 50% 100%, rgba(37, 99, 235, 0.14) 0%, rgba(37, 99, 235, 0.04) 40%, transparent 75%)',
-        }}
-      />
+    <section id="precios" className="relative bg-ink overflow-hidden py-28 md:py-36 px-6">
+      <div className="absolute inset-0 tech-grid grid-fade pointer-events-none" aria-hidden="true" />
       <motion.div
         initial={reducedMotion ? undefined : 'hidden'}
         whileInView={reducedMotion ? undefined : 'visible'}
         viewport={{ once: true, margin: '-80px' }}
         variants={fadeUp}
-        className="relative z-10 max-w-content mx-auto flex flex-col items-center text-center gap-6"
+        className="relative z-10 max-w-content mx-auto"
       >
-        <h2
-          className="font-display font-black text-bone leading-tight"
-          style={{ fontSize: 'clamp(2.25rem, 5vw, 3.5rem)', letterSpacing: '-0.03em' }}
-        >
-          ¿Querés verlo en acción?
-        </h2>
-        <p className="font-body text-ink-300 text-base max-w-md">
-          Te mostramos OmaTech POS funcionando con tu rubro. Licencia por dispositivo, sin
-          suscripción mensual.
-        </p>
-        <a
-          href={WA_DEMO}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group relative overflow-hidden bg-amber text-ink rounded-lg px-8 py-4 font-body font-semibold text-base mt-2"
-        >
-          <span className="absolute inset-0 bg-amber-dim origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
-          <span className="relative z-10 flex items-center gap-2">
-            Solicitar demo
-            <span className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-              →
+        <div className="bg-white/[0.02] ring-1 ring-white/10 rounded-2xl p-1.5">
+          <div className="bg-ink-800 rounded-[0.85rem] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] px-7 py-14 md:px-14 md:py-20 flex flex-col items-start gap-6">
+            <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-amber">
+              Demo · sin compromiso
             </span>
-          </span>
-        </a>
+            <h2
+              className="font-display font-bold text-bone leading-[0.98] tracking-[-0.03em] text-balance"
+              style={{ fontSize: 'clamp(2.25rem, 5vw, 3.75rem)' }}
+            >
+              ¿Querés verlo en acción?
+            </h2>
+            <p className="font-body text-ink-300 text-base max-w-md leading-relaxed">
+              Te mostramos OmaTech POS funcionando con tu rubro. Licencia por dispositivo, sin
+              suscripción mensual.
+            </p>
+            <a
+              href={WA_DEMO}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-3 bg-amber text-ink pl-6 pr-2 py-3.5 font-mono text-[13px] font-semibold uppercase tracking-wide transition-colors duration-200 hover:bg-bone active:scale-[0.98] mt-2"
+            >
+              Solicitar demo
+              <span className="grid place-items-center w-8 h-8 bg-ink/15 transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+            </a>
+          </div>
+        </div>
       </motion.div>
     </section>
   )
@@ -207,77 +202,83 @@ function ShowcaseTabs() {
   const tab = showcaseTabs[active]
 
   return (
-    <section className="bg-bone py-24 md:py-28 px-6">
-      <div className="max-w-content mx-auto flex flex-col gap-12">
-        {/* Header */}
+    <section className="relative bg-bone py-24 md:py-32 px-6 overflow-hidden">
+      <div className="absolute inset-0 tech-grid-light grid-fade pointer-events-none" aria-hidden="true" />
+      <div className="relative max-w-content mx-auto flex flex-col gap-12">
+        {/* Header asimétrico + tabs */}
         <motion.div
           initial={reducedMotion ? undefined : 'hidden'}
           whileInView={reducedMotion ? undefined : 'visible'}
           viewport={{ once: true, margin: '-80px' }}
           variants={fadeUp}
-          className="flex flex-col items-center text-center gap-4"
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-8"
         >
-          <p
-            className="font-mono text-amber uppercase tracking-[0.25em]"
-            style={{ fontSize: '11px' }}
-          >
-            El producto en vivo
-          </p>
-          <h2
-            className="font-display font-black text-ink leading-tight"
-            style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', letterSpacing: '-0.03em' }}
-          >
-            Miralo en acción
-          </h2>
+          <div className="flex flex-col gap-4 max-w-xl">
+            <div className="flex items-center gap-4">
+              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-amber-dim">
+                El producto en vivo
+              </span>
+              <span className="h-px flex-1 max-w-[100px] bg-bone-line" />
+            </div>
+            <h2
+              className="font-display font-bold text-ink leading-[0.98] tracking-[-0.03em]"
+              style={{ fontSize: 'clamp(2rem, 5vw, 3.25rem)' }}
+            >
+              Miralo en acción
+            </h2>
+          </div>
+
+          {/* Tabs — control segmentado técnico */}
+          <div className="flex border border-bone-line w-max" role="tablist" aria-label="Módulos del POS">
+            {showcaseTabs.map((t, i) => {
+              const isActive = i === active
+              return (
+                <button
+                  key={t.id}
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={() => setActive(i)}
+                  className={[
+                    'px-5 py-2.5 font-mono text-[12px] uppercase tracking-wider transition-colors duration-200 cursor-pointer border-r border-bone-line last:border-r-0',
+                    isActive ? 'bg-ink text-bone' : 'bg-transparent text-ink-700 hover:bg-white/50',
+                  ].join(' ')}
+                >
+                  {t.label}
+                </button>
+              )
+            })}
+          </div>
         </motion.div>
 
-        {/* Tabs */}
-        <div className="flex justify-center gap-3" role="tablist" aria-label="Módulos del POS">
-          {showcaseTabs.map((t, i) => {
-            const isActive = i === active
-            return (
-              <button
-                key={t.id}
-                role="tab"
-                aria-selected={isActive}
-                onClick={() => setActive(i)}
-                className={[
-                  'rounded-full px-5 py-2.5 font-body text-sm font-semibold transition-colors duration-200 cursor-pointer',
-                  isActive
-                    ? 'bg-ink text-bone border border-ink'
-                    : 'bg-transparent text-ink border border-bone-line hover:border-ink/40',
-                ].join(' ')}
-              >
-                {t.label}
-              </button>
-            )
-          })}
-        </div>
-
-        {/* Content: text left (40%) + image right (60%) on desktop; image first on mobile */}
+        {/* Contenido: texto izq + imagen der en desktop; imagen primero en mobile */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 items-center">
           <div className="lg:col-span-2 order-2 lg:order-1 flex flex-col gap-4">
+            <span className="font-mono text-[11px] tabular text-ink-300">
+              {String(active + 1).padStart(2, '0')} / {String(showcaseTabs.length).padStart(2, '0')}
+            </span>
             <h3
-              className="font-display font-extrabold text-ink tracking-tight"
+              className="font-display font-semibold text-ink tracking-[-0.01em]"
               style={{ fontSize: '24px' }}
             >
               {tab.label}
             </h3>
-            <p className="font-body text-base text-ink-500 leading-relaxed">{tab.description}</p>
+            <p className="font-body text-base text-ink-700 leading-relaxed">{tab.description}</p>
           </div>
 
           <div className="lg:col-span-3 order-1 lg:order-2">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={tab.id}
-                initial={reducedMotion ? false : { opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={reducedMotion ? { opacity: 1 } : { opacity: 0 }}
-                transition={{ duration: 0.2, ease: EASE }}
-              >
-                <BrowserMockup src={tab.img} alt={tab.alt} />
-              </motion.div>
-            </AnimatePresence>
+            <div className="bg-ink/[0.04] ring-1 ring-ink/10 rounded-2xl p-1.5">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={tab.id}
+                  initial={reducedMotion ? false : { opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={reducedMotion ? { opacity: 1 } : { opacity: 0 }}
+                  transition={{ duration: 0.2, ease: EASE }}
+                >
+                  <BrowserMockup src={tab.img} alt={tab.alt} />
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </div>
         </div>
       </div>

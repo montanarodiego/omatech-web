@@ -7,8 +7,8 @@ import type { Feature } from '../components/FeatureGrid'
 import SectionFade from '../components/SectionFade'
 import Footer from '../components/Footer'
 
-const INK = '#0B0B0C'
-const BONE = '#F5F3EF'
+const INK = '#0A0A0B'
+const BONE = '#F4F2ED'
 
 const WA_NUMBER = '5491171416315'
 
@@ -143,70 +143,65 @@ function EarlyAccessForm() {
   ]
 
   return (
-    <section id="early-access" className="relative bg-ink overflow-hidden py-28 md:py-32 px-6">
-      <div
-        className="absolute inset-0 pointer-events-none"
-        aria-hidden="true"
-        style={{
-          background:
-            'radial-gradient(70% 80% at 50% 0%, rgba(37, 99, 235, 0.12) 0%, rgba(37, 99, 235, 0.04) 40%, transparent 75%)',
-        }}
-      />
+    <section id="early-access" className="relative bg-ink overflow-hidden py-28 md:py-36 px-6">
+      <div className="absolute inset-0 tech-grid grid-fade pointer-events-none" aria-hidden="true" />
       <motion.div
         initial={reducedMotion ? undefined : 'hidden'}
         whileInView={reducedMotion ? undefined : 'visible'}
         viewport={{ once: true, margin: '-80px' }}
         variants={fadeUp}
-        className="relative z-10 max-w-xl mx-auto flex flex-col items-center text-center gap-6"
+        className="relative z-10 max-w-2xl mx-auto"
       >
-        <span className="self-center font-mono text-[11px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-md bg-transparent border border-amber/30 text-amber/70">
-          Acceso anticipado
-        </span>
-        <h2
-          className="font-display font-black text-bone leading-tight"
-          style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', letterSpacing: '-0.03em' }}
-        >
-          Sumate a la lista de espera
-        </h2>
-        <p className="font-body text-ink-300 text-base max-w-md">
-          Dejanos tus datos y te contactamos cuando esté disponible para que seas de los primeros en
-          probarlo.
-        </p>
-
-        <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4 text-left mt-2">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {fields.map((f) => (
-              <label key={f.key} className="flex flex-col gap-2">
-                <span className="font-mono text-[11px] uppercase tracking-wider text-ink-300">
-                  {f.label}
-                </span>
-                <input
-                  type={f.type}
-                  required
-                  value={form[f.key]}
-                  onChange={update(f.key)}
-                  placeholder={f.placeholder}
-                  className="bg-white/5 border border-white/10 rounded-lg px-4 py-3 font-body text-sm text-bone placeholder:text-ink-500 focus:border-amber/50 focus:outline-none transition-colors duration-200"
-                />
-              </label>
-            ))}
-          </div>
-          <button
-            type="submit"
-            className="group relative overflow-hidden bg-amber text-ink rounded-lg px-6 py-4 font-body font-semibold text-base mt-2 cursor-pointer border-none"
-          >
-            <span className="absolute inset-0 bg-amber-dim origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out" />
-            <span className="relative z-10 flex items-center justify-center gap-2">
-              Quiero acceso anticipado
-              <span className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-                →
+        <div className="bg-white/[0.02] ring-1 ring-white/10 rounded-2xl p-1.5">
+          <div className="bg-ink-800 rounded-[0.85rem] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] px-6 py-10 md:px-12 md:py-14 flex flex-col gap-6">
+            <div className="flex items-center gap-4">
+              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-amber">
+                Acceso anticipado
               </span>
-            </span>
-          </button>
-          <p className="font-mono text-ink-500 text-center" style={{ fontSize: '11px' }}>
-            Se abrirá WhatsApp con tus datos para confirmar el registro.
-          </p>
-        </form>
+              <span className="h-px flex-1 max-w-[120px] bg-ink-line" />
+            </div>
+            <h2
+              className="font-display font-bold text-bone leading-[0.98] tracking-[-0.03em] text-balance"
+              style={{ fontSize: 'clamp(2rem, 5vw, 3.25rem)' }}
+            >
+              Sumate a la lista de espera
+            </h2>
+            <p className="font-body text-ink-300 text-base max-w-md leading-relaxed">
+              Dejanos tus datos y te contactamos cuando esté disponible para que seas de los primeros
+              en probarlo.
+            </p>
+
+            <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4 text-left mt-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {fields.map((f) => (
+                  <label key={f.key} className="flex flex-col gap-2">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-ink-500">
+                      {f.label}
+                    </span>
+                    <input
+                      type={f.type}
+                      required
+                      value={form[f.key]}
+                      onChange={update(f.key)}
+                      placeholder={f.placeholder}
+                      className="bg-ink border border-ink-line px-4 py-3 font-body text-sm text-bone placeholder:text-ink-500 focus:border-amber focus:outline-none transition-colors duration-200"
+                    />
+                  </label>
+                ))}
+              </div>
+              <button
+                type="submit"
+                className="group inline-flex items-center justify-between bg-amber text-ink pl-6 pr-2 py-3.5 font-mono text-[13px] font-semibold uppercase tracking-wide mt-2 cursor-pointer border-none transition-colors duration-200 hover:bg-bone active:scale-[0.99]"
+              >
+                Quiero acceso anticipado
+                <span className="grid place-items-center w-8 h-8 bg-ink/15 transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+              </button>
+              <p className="font-mono text-ink-500 text-[11px]">
+                Se abrirá WhatsApp con tus datos para confirmar el registro.
+              </p>
+            </form>
+          </div>
+        </div>
       </motion.div>
     </section>
   )

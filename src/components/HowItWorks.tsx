@@ -1,16 +1,16 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import type { Variants } from 'framer-motion'
 
-const EASE: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
+const EASE: [number, number, number, number] = [0.32, 0.72, 0, 1]
 
 const stagger: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
+  visible: { transition: { staggerChildren: 0.12 } },
 }
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: EASE } },
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
 }
 
 interface Step {
@@ -45,80 +45,80 @@ export default function HowItWorks() {
   const reducedMotion = useReducedMotion()
 
   return (
-    <section className="bg-bone py-24 md:py-28 px-6">
-      <div className="max-w-content mx-auto flex flex-col gap-14">
-        {/* Header */}
+    <section className="relative bg-bone py-24 md:py-32 px-6 overflow-hidden">
+      <div className="absolute inset-0 tech-grid-light grid-fade pointer-events-none" aria-hidden="true" />
+      <div className="relative max-w-content mx-auto flex flex-col gap-14">
+        {/* Encabezado */}
         <motion.div
           variants={stagger}
           initial={reducedMotion ? undefined : 'hidden'}
           whileInView={reducedMotion ? undefined : 'visible'}
           viewport={{ once: true, margin: '-80px' }}
-          className="flex flex-col items-center text-center gap-4"
+          className="flex flex-col gap-4 max-w-2xl"
         >
-          <motion.p
-            variants={fadeUp}
-            className="font-mono text-amber uppercase tracking-[0.25em]"
-            style={{ fontSize: '11px' }}
-          >
-            Cómo funciona
-          </motion.p>
+          <motion.div variants={fadeUp} className="flex items-center gap-4">
+            <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-amber-dim">
+              Cómo funciona
+            </span>
+            <span className="h-px flex-1 max-w-[120px] bg-bone-line" />
+          </motion.div>
           <motion.h2
             variants={fadeUp}
-            className="font-display font-black text-ink leading-tight"
-            style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', letterSpacing: '-0.03em' }}
+            className="font-display font-bold text-ink leading-[0.98] tracking-[-0.03em] text-balance"
+            style={{ fontSize: 'clamp(2rem, 5vw, 3.25rem)' }}
           >
             Simple de principio a fin
           </motion.h2>
           <motion.p
             variants={fadeUp}
-            className="font-body text-base text-ink-500 leading-relaxed max-w-xl"
+            className="font-body text-base text-ink-700 leading-relaxed max-w-xl"
           >
             En cuatro pasos pasás de instalar el sistema a vender y controlar tu comercio. Sin
             curva de aprendizaje y sin depender de internet.
           </motion.p>
         </motion.div>
 
-        {/* Steps */}
+        {/* Pasos como proceso indexado */}
         <motion.ol
           variants={stagger}
           initial={reducedMotion ? undefined : 'hidden'}
           whileInView={reducedMotion ? undefined : 'visible'}
           viewport={{ once: true, margin: '-60px' }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-bone-line"
         >
           {steps.map((step, i) => (
             <motion.li
               key={step.title}
               variants={fadeUp}
-              className="relative flex flex-col gap-4 rounded-2xl bg-white border border-bone-line p-7"
+              className="group relative flex flex-col gap-4 p-7 md:p-8 border-r border-b border-bone-line bg-white/30 hover:bg-white/70 transition-colors duration-300"
             >
+              <span className="absolute top-0 left-0 h-0.5 w-0 bg-amber group-hover:w-full transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]" />
               <span
-                className="font-display font-black text-amber/30 leading-none"
-                style={{ fontSize: '44px' }}
+                className="font-display font-bold text-ink/15 leading-none tabular"
+                style={{ fontSize: '52px' }}
               >
                 {String(i + 1).padStart(2, '0')}
               </span>
               <h3
-                className="font-display font-extrabold tracking-tight text-ink"
-                style={{ fontSize: '19px' }}
+                className="font-display font-semibold tracking-[-0.01em] text-ink"
+                style={{ fontSize: '18px' }}
               >
                 {step.title}
               </h3>
-              <p className="font-body text-sm leading-relaxed text-ink-500">{step.description}</p>
+              <p className="font-body text-sm leading-relaxed text-ink-700">{step.description}</p>
             </motion.li>
           ))}
         </motion.ol>
 
-        {/* PDF hook — cuando exista la guía detallada, reemplazar este bloque por un enlace de descarga */}
+        {/* Nota PDF — reemplazar por enlace de descarga cuando exista la guía */}
         <motion.p
           initial={reducedMotion ? undefined : 'hidden'}
           whileInView={reducedMotion ? undefined : 'visible'}
           viewport={{ once: true, margin: '-60px' }}
           variants={fadeUp}
-          className="font-body text-sm text-ink-500/80 text-center"
+          className="font-mono text-[12px] uppercase tracking-wider text-ink-500"
         >
-          ¿Querés el detalle completo? Estamos preparando una guía paso a paso con todas las
-          pantallas del sistema.
+          → Guía paso a paso con todas las pantallas: en preparación
         </motion.p>
       </div>
     </section>

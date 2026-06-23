@@ -6,16 +6,22 @@ html {
   scroll-behavior: smooth;
 }
 
+/* La navbar fija (72px) tapaba el inicio de las secciones al saltar a un ancla */
+section[id] {
+  scroll-margin-top: 88px;
+}
+
 html,
 body {
-  /* Evita scroll horizontal accidental por glows, transforms o títulos anchos */
+  /* Evita scroll horizontal accidental por texturas, transforms o títulos anchos */
   overflow-x: hidden;
   max-width: 100%;
 }
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
-  background: #0B0B0C;
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  background: #0A0A0B;
+  color: #F4F2ED;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -27,14 +33,72 @@ body {
 
 ::selection {
   background: #2563EB;
-  color: #0B0B0C;
+  color: #0A0A0B;
 }
 
 a:focus-visible,
-button:focus-visible {
+button:focus-visible,
+input:focus-visible {
   outline: 2px solid #2563EB;
   outline-offset: 3px;
   border-radius: 2px;
+}
+
+/* Cifras tabulares para datos/precios/specs en mono */
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+/* ── Texturas técnicas ──────────────────────────────────────── */
+
+/* Grilla "blueprint" sutil sobre fondo oscuro. pointer-events-none vía utilidad. */
+.tech-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Grilla sobre superficie clara (bone) */
+.tech-grid-light {
+  background-image:
+    linear-gradient(to right, rgba(10, 10, 11, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(10, 10, 11, 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Máscara radial para desvanecer la grilla hacia los bordes */
+.grid-fade {
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 100%);
+}
+
+/* Grano fijo de toda la pantalla — rompe la planitud digital. */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Scrollbar técnico */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0A0B;
+}
+::-webkit-scrollbar-thumb {
+  background: #1C1D21;
+  border: 2px solid #0A0A0B;
+  border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3A3B40;
 }
 
 @media (prefers-reduced-motion: reduce) {
