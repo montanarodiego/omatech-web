@@ -1,0 +1,22 @@
+# Dependabot: abre PRs automáticos cuando una dependencia tiene una
+# vulnerabilidad de seguridad o queda desactualizada. Cero mantenimiento.
+version: 2
+updates:
+  # Dependencias de la web (npm)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    groups:
+      # Agrupa actualizaciones menores/parche en un solo PR para no saturar.
+      minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"
+
+  # Acciones del workflow de deploy (actions/checkout, etc.)
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
