@@ -2,6 +2,39 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
+
+    <!-- ============================================================
+         SEGURIDAD (defensa en profundidad)
+         GitHub Pages no permite cabeceras HTTP propias, así que las
+         protecciones que SÍ funcionan vía <meta> van acá. El resto
+         (HSTS, X-Frame-Options, Permissions-Policy) se aplican con
+         Cloudflare gratis delante del dominio — ver README/notas.
+         ------------------------------------------------------------
+         CSP: el sitio solo carga código propio ('self') + Google
+         Fonts. Bloquea la carga de cualquier script/recurso externo
+         no autorizado y la exfiltración a dominios de terceros.
+         'unsafe-inline' en script es por el bootstrap de routing de
+         abajo y el JSON-LD; no hay 'unsafe-eval'. -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
+    />
+    <!-- No filtrar la URL completa hacia sitios externos (WhatsApp/IG). -->
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <!-- Anti-clickjacking para GitHub Pages (donde no hay X-Frame-Options):
+         si la página termina dentro de un <iframe> de otro origen, se rompe
+         del marco. La web nunca se embebe legítimamente. -->
+    <script>
+      if (window.top !== window.self) {
+        try {
+          window.top.location = window.self.location.href
+        } catch (e) {
+          document.documentElement.style.display = 'none'
+        }
+      }
+    </script>
+    <!-- ============================================================ -->
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0A0A0B" />
