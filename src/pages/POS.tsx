@@ -6,6 +6,7 @@ import FeatureGrid from '../components/FeatureGrid'
 import type { Feature } from '../components/FeatureGrid'
 import ModuleList from '../components/ModuleList'
 import HowItWorks from '../components/HowItWorks'
+import Facturacion from '../components/Facturacion'
 import SectionFade from '../components/SectionFade'
 import BrowserMockup from '../components/BrowserMockup'
 import VideoShowcase from '../components/VideoShowcase'
@@ -322,6 +323,7 @@ export default function POS() {
       />
       <HowItWorks />
       <ShowcaseTabs />
+      <Facturacion />
       <SectionFade from={BONE} to={INK} />
 
       <VideoShowcase />
